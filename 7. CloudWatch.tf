@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   for_each = local.vpn
 
-  alarm_name          = "VPN_Tunnel_Status_${each.key}_Tunnel1"
+  alarm_name          = "VPN_Tunnel_Status_vpn-${var.site}<-->${each.key}_Tunnel1"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "3"
   threshold           = "1"
@@ -20,7 +20,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   for_each = local.vpn
 
-  alarm_name          = "VPN_Tunnel_Status_${each.key}_Tunnel2"
+  alarm_name          = "VPN_Tunnel_Status_vpn-${var.site}<-->${each.key}_Tunnel2"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "3"
   threshold           = "1"
