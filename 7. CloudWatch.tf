@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   threshold           = "1"
   metric_name         = "TunnelState"
   namespace           = "AWS/VPN"
-  period              = "300"
+  period              = "60"
   statistic           = "Minimum"
   dimensions = {
     VpnId     = element(var.vpn_connections, count.index)
@@ -31,7 +31,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   threshold           = "1"
   metric_name         = "TunnelState"
   namespace           = "AWS/VPN"
-  period              = "300"
+  period              = "60"
   statistic           = "Minimum"
   dimensions = {
     VpnId     = element(var.vpn_connections, count.index)
