@@ -40,8 +40,14 @@ resource "aws_sns_topic" "sns" {
   name = "vpn-alarm-topic"
 }
 
-resource "aws_sns_topic_subscription" "sns" {
+resource "aws_sns_topic_subscription" "dstcc11" {
   topic_arn = aws_sns_topic.sns.arn
   protocol  = "email"
   endpoint  = "dstcc11@gmail.com"
+}
+
+resource "aws_sns_topic_subscription" "jerome3079" {
+  topic_arn = aws_sns_topic.sns.arn
+  protocol  = "email"
+  endpoint  = "jerome3079@gmail.com"
 }
