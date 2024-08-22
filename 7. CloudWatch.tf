@@ -6,7 +6,7 @@ variable "vpn_connections" {
 
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   count               = length(var.vpn_connections)
-  alarm_name          = "VPN_Tunnel_Status_${element(var.vpn_connections, count.index)}"
+  alarm_name          = "VPN_Tunnel_Status_Tunnel1_${element(var.vpn_connections, count.index)}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   threshold           = "1"
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
     VpnId     = element(var.vpn_connections, count.index)
     VpnTunnel = "Tunnel1"
   }
-  alarm_description = "Alarm for VPN tunnel ${element(var.vpn_connections, count.index)} status"
+  alarm_description = "Alarm for VPN tunnel 1 ${element(var.vpn_connections, count.index)} status"
   actions_enabled   = true
   alarm_actions     = [aws_sns_topic.sns.arn]
 }
