@@ -4,7 +4,7 @@ variable "vpn_connections" {
   default     = ["vpn-0c5ce3f6425270b6f", "vpn-0fb9afd22eee6cec8"]
 }
 
-resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status" {
+resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   count               = length(var.vpn_connections)
   alarm_name          = "VPN_Tunnel_Status_${element(var.vpn_connections, count.index)}"
   comparison_operator = "LessThanThreshold"
