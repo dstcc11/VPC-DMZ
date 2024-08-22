@@ -1,0 +1,26 @@
+resource "aws_s3_bucket" "my-bucket-s3-2023-11-20" {
+  bucket = "my-bucket-s3-2023-11-20"
+  tags = {
+    Name        = "my-bucket-s3-2023-11-20"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_bucket_policy" "access_bucket_policy" {
+  bucket = aws_s3_bucket.my-bucket-s3-2023-11-20.id
+
+  policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Principal" : {
+            "AWS" : "arn:aws:iam::127311923021:root"
+          },
+          "Action" : "s3:PutObject",
+          "Resource" : "arn:aws:s3:::my-bucket-s3-2023-11-20/*"
+        }
+      ]
+  })
+}
