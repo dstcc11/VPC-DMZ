@@ -1,7 +1,7 @@
 variable "vpn_connections" {
   description = "List of VPN Connection IDs to monitor"
   type        = list(string)
-  default     = ["vpn-0c5ce3f6425270b6f", "vpn-0fb9afd22eee6cec8"]
+  default     = ["vpn-0c5ce3f6425270b6f", "vpn-0fb9afd22eee6cec8", "vpn-0024a1a3f9d7d3968"]
 }
 
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
