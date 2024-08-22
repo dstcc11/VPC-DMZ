@@ -1,7 +1,7 @@
-resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel1" {
+resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   for_each = local.vpn
 
-  alarm_name          = "vpn-${var.site}<-->${each.key}_Tunnel1 - DOWN"
+  alarm_name          = "vpn-${var.site}<-->${each.key}_Tunnel1"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "3"
   threshold           = "1"
@@ -18,10 +18,10 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel1" {
   ok_actions        = [aws_sns_topic.vpn-sns.arn]
 }
 
-resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel2" {
+resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   for_each = local.vpn
 
-  alarm_name          = "vpn-${var.site}<-->${each.key}_Tunnel2 - DOWN"
+  alarm_name          = "vpn-${var.site}<-->${each.key}_Tunnel2"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "3"
   threshold           = "1"
