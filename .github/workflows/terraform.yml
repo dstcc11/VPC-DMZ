@@ -1,0 +1,24 @@
+name: Terraform Cloud Plan
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform-cloud-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Terraform Cloud
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TERRAFORM_TOKEN }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Run Terraform Cloud Plan
+        run: terraform plan -input=false
