@@ -11,7 +11,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   statistic           = "Average"
   dimensions = {
     VpnId     = each.key
-    VpnTunnel = "Tunnel1"
+    TunnelIpAddress = "tunnel1_address"
   }
   alarm_description = "Alarm for VPN tunnel 1 ${each.key} status"
   actions_enabled   = true
@@ -31,7 +31,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   statistic           = "Average"
   dimensions = {
     VpnId     = each.key
-    VpnTunnel = "Tunnel2"
+    TunnelIpAddress = "tunnel2_address"
   }
   alarm_description = "Alarm for VPN tunnel 2 ${each.key} status"
   actions_enabled   = true
