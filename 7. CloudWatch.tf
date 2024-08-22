@@ -10,7 +10,6 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   period              = "60"
   statistic           = "Average"
   dimensions = {
-    VpnId           = each.key
     TunnelIpAddress = aws_vpn_connection.VPN[each.key].tunnel1_address
   }
   alarm_description = "Alarm for VPN tunnel 1 ${each.key} status"
@@ -30,7 +29,6 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   period              = "60"
   statistic           = "Average"
   dimensions = {
-    VpnId           = each.key
     TunnelIpAddress = aws_vpn_connection.VPN[each.key].tunnel2_address
   }
   alarm_description = "Alarm for VPN tunnel 2 ${each.key} status"
