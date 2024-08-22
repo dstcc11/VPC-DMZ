@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
+resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel1" {
   for_each = local.vpn
 
   alarm_name          = "vpn-${var.site}<-->${each.key}_Tunnel1 - DOWN"
@@ -14,10 +14,10 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   }
   alarm_description = "Alarm for VPN tunnel 1 ${each.key} status"
   actions_enabled   = true
-  alarm_actions     = [aws_sns_topic.sns.arn]
+  alarm_actions     = [aws_sns_topic.vpn-sns.arn]
 }
 
-resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
+resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel2" {
   for_each = local.vpn
 
   alarm_name          = "vpn-${var.site}<-->${each.key}_Tunnel2 - DOWN"
@@ -33,15 +33,15 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   }
   alarm_description = "Alarm for VPN tunnel 2 ${each.key} status"
   actions_enabled   = true
-  alarm_actions     = [aws_sns_topic.sns.arn]
+  alarm_actions     = [aws_sns_topic.vpn-sns.arn]
 }
 
-resource "aws_sns_topic" "sns" {
+resource "aws_sns_topic" "vpn-sns" {
   name = "vpn-alarm-topic"
 }
 
 resource "aws_sns_topic_subscription" "dstcc11" {
-  topic_arn = aws_sns_topic.sns.arn
+  topic_arn = aws_sns_topic.vpn-sns.arn
   protocol  = "email"
   endpoint  = "dstcc11@gmail.com"
 }
