@@ -127,7 +127,7 @@ resource "aws_instance" "EC2" {
   private_ip                  = each.value.private_ip != "" ? each.value.private_ip : null
   associate_public_ip_address = each.value.public_ip
   vpc_security_group_ids      = [aws_security_group.SG-EC2["${each.key}"].id]
-  key_name                    = aws_key_pair.key_pair.key_name
+  key_name                    = aws_key_pair.key_pair1.key_name
   iam_instance_profile        = aws_iam_instance_profile.ssm-iam-instance-profile.name
   user_data                   = <<EOF
         #!/bin/bash
