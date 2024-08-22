@@ -53,9 +53,13 @@ locals {
     }
   }
   vpn = {
-    "Test" = {
-      peer_ip   = "12.12.12.12"
-      remote_nw = ["13.13.13.13/32"]
+    "Test1" = {
+      peer_ip   = "1.1.1.1"
+      remote_nw = ["192.168.1.1/32"]
+    }
+    "Test2" = {
+      peer_ip   = "2.2.2.2"
+      remote_nw = ["192.168.2.1/32"]
     }
   }
   sg = {
