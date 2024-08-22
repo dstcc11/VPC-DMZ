@@ -1,12 +1,7 @@
-variable "vpn_connections" {
-  description = "List of VPN Connection IDs to monitor"
-  type        = list(string)
-  default     = ["vpn-0c5ce3f6425270b6f", "vpn-0fb9afd22eee6cec8", "vpn-0024a1a3f9d7d3968"]
-}
-
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
-  count               = length(var.vpn_connections)
-  alarm_name          = "VPN_Tunnel_Status_Tunnel1_${element(var.vpn_connections, count.index)}"
+  for_each = local.vpn
+
+  alarm_name          = "VPN_Tunnel_Status_${each.key}_Tunnel1"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   threshold           = "1"
@@ -15,17 +10,18 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
   period              = "60"
   statistic           = "Minimum"
   dimensions = {
-    VpnId     = element(var.vpn_connections, count.index)
+    VpnId     = each.key
     VpnTunnel = "Tunnel1"
   }
-  alarm_description = "Alarm for VPN tunnel 1 ${element(var.vpn_connections, count.index)} status"
+  alarm_description = "Alarm for VPN tunnel 1 ${each.key} status"
   actions_enabled   = true
   alarm_actions     = [aws_sns_topic.sns.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
-  count               = length(var.vpn_connections)
-  alarm_name          = "VPN_Tunnel_Status_Tunnel2_${element(var.vpn_connections, count.index)}"
+  for_each = local.vpn
+
+  alarm_name          = "VPN_Tunnel_Status_${each.key}_Tunnel2"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   threshold           = "1"
@@ -34,10 +30,10 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   period              = "60"
   statistic           = "Minimum"
   dimensions = {
-    VpnId     = element(var.vpn_connections, count.index)
+    VpnId     = each.key
     VpnTunnel = "Tunnel2"
   }
-  alarm_description = "Alarm for VPN tunnel 2 ${element(var.vpn_connections, count.index)} status"
+  alarm_description = "Alarm for VPN tunnel 2 ${each.key} status"
   actions_enabled   = true
   alarm_actions     = [aws_sns_topic.sns.arn]
 }

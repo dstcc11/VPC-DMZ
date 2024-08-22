@@ -61,7 +61,7 @@ locals {
       peer_ip   = "2.2.2.2"
       remote_nw = ["192.168.2.1/32"]
     }
-     "Azure" = {
+    "Azure" = {
       peer_ip   = "20.232.25.28"
       remote_nw = ["192.168.3.1/32"]
     }
