@@ -20,7 +20,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status" {
   }
   alarm_description = "Alarm for VPN tunnel ${element(var.vpn_connections, count.index)} status"
   actions_enabled   = true
-  alarm_actions     = [aws_sns_topic.example.arn]
+  alarm_actions     = [aws_sns_topic.sns.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
@@ -39,15 +39,15 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
   }
   alarm_description = "Alarm for VPN tunnel 2 ${element(var.vpn_connections, count.index)} status"
   actions_enabled   = true
-  alarm_actions     = [aws_sns_topic.example.arn]
+  alarm_actions     = [aws_sns_topic.sns.arn]
 }
 
-resource "aws_sns_topic" "example" {
+resource "aws_sns_topic" "sns" {
   name = "vpn-alarm-topic"
 }
 
-resource "aws_sns_topic_subscription" "example" {
-  topic_arn = aws_sns_topic.example.arn
+resource "aws_sns_topic_subscription" "sns" {
+  topic_arn = aws_sns_topic.sns.arn
   protocol  = "email"
-  endpoint  = "your_email@example.com"
+  endpoint  = "dstcc11@gmail.com"
 }
