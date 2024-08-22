@@ -65,7 +65,16 @@ locals {
 }
 
 ######################################################
+terraform {
+  cloud {
 
+    organization = "KuTest"
+
+    workspaces {
+      name = "VPC-DMZ"
+    }
+  }
+}
 ################ VPC ##################
 resource "aws_vpc" "VPC" {
   for_each             = local.vpc
