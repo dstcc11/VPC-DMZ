@@ -3,8 +3,8 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel1" {
 
   alarm_name          = "VPN_Tunnel_Status_${each.key}_Tunnel1"
   comparison_operator = "LessThanThreshold"
-  evaluation_periods  = "1"
-  threshold           = "1"
+  evaluation_periods  = "3"
+  threshold           = "3"
   metric_name         = "TunnelState"
   namespace           = "AWS/VPN"
   period              = "60"
@@ -23,8 +23,8 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_status_tunnel2" {
 
   alarm_name          = "VPN_Tunnel_Status_${each.key}_Tunnel2"
   comparison_operator = "LessThanThreshold"
-  evaluation_periods  = "1"
-  threshold           = "1"
+  evaluation_periods  = "3"
+  threshold           = "3"
   metric_name         = "TunnelState"
   namespace           = "AWS/VPN"
   period              = "60"
