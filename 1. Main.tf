@@ -152,23 +152,23 @@ resource "aws_security_group" "SG" {
 }
 
 ################ Key Pair ##################
-resource "tls_private_key" "key_pair" {
+resource "tls_private_key" "key_pair1" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 # Create the Key Pair
-resource "aws_key_pair" "key_pair" {
-  key_name   = "my-key-pair"
-  public_key = tls_private_key.key_pair.public_key_openssh
+resource "aws_key_pair" "key_pair1" {
+  key_name   = "my-key-pair1"
+  public_key = tls_private_key.key_pair1.public_key_openssh
 }
 # Save file
-resource "local_file" "ssh_key" {
-  filename = "${aws_key_pair.key_pair.key_name}.pem"
-  content  = tls_private_key.key_pair.private_key_pem
+resource "local_file" "ssh_key1" {
+  filename = "${aws_key_pair.key_pair1.key_name}.pem"
+  content  = tls_private_key.key_pair1.private_key_pem
 }
 
-#output "file_content" {
-#  value     = tls_private_key.key_pair.private_key_pem
+#output "file_content1" {
+#  value     = tls_private_key.key_pair1.private_key_pem
 #  sensitive = true
 #}
 
