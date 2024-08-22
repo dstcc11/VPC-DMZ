@@ -15,6 +15,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel1" {
   alarm_description = "Alarm for VPN tunnel 1 ${each.key} status"
   actions_enabled   = true
   alarm_actions     = [aws_sns_topic.vpn-sns.arn]
+  ok_actions        = [aws_sns_topic.vpn-sns.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel2" {
@@ -34,6 +35,7 @@ resource "aws_cloudwatch_metric_alarm" "vpn_tunnel_down_tunnel2" {
   alarm_description = "Alarm for VPN tunnel 2 ${each.key} status"
   actions_enabled   = true
   alarm_actions     = [aws_sns_topic.vpn-sns.arn]
+  ok_actions        = [aws_sns_topic.vpn-sns.arn]
 }
 
 resource "aws_sns_topic" "vpn-sns" {
