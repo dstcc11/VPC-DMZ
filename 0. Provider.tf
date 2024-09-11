@@ -23,11 +23,6 @@ terraform {
 }
 
 
-
-provider "awsutils" {
-  region = "us-east-1"
-}
-
 # Delete the default VPC in our account/region
 resource "awsutils_default_vpc_deletion" "default" {
 }
