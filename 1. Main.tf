@@ -1,5 +1,5 @@
 locals {
-  region = "us-west-2"
+  region = "us-east-1"
   vpc = {
     "Prod" = {
       vpc_cidr = "10.111.0.0/16"
